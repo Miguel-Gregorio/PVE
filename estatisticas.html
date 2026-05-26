@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Jogos - CFM</title>
+    <link rel="stylesheet" href="frentedosite.css">
+    <link rel="stylesheet" href="estatisticas.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navegação-tela-inicial">
+            <a href="times.html" target="_blank" rel="noopener noreferrer">Times</a>
+            <a href="noticias.html" target="_blank" rel="noopener noreferrer">Notícias</a>
+            <a href="index.html">CFM</a>
+            <a href="estatisticas.html" target="_blank" rel="noopener noreferrer">Agenda</a>
+            <a href="sobre.html" target="_blank" rel="noopener noreferrer">Sobre</a>
+        </nav>
+    </header>
+
+    <main class="container-agenda">
+        <h1 class="titulo-agenda">Próximos Confrontos</h1>
+        <p class="subtitulo-agenda">Fique por dentro de onde e quando os gigantes de Minas entram em campo</p>
+        
+        <div class="botoes-campeonatos">
+            <button class="btn-camp ativo" onclick="mudarCampeonato('mineiro')">Mineiro</button>
+            <button class="btn-camp" onclick="mudarCampeonato('brasileirao')">Brasileirão</button>
+            <button class="btn-camp" onclick="mudarCampeonato('libertadores')">Libertadores</button>
+            <button class="btn-camp" onclick="mudarCampeonato('sudamericana')">Sul-Americana</button>
+        </div>
+
+        <div id="mineiro" class="agenda-container ativa">
+            <h2>Campeonato Mineiro - Próximas Rodadas</h2>
+        </div>
+
+        <div id="brasileirao" class="agenda-container">
+            <h2>Campeonato Brasileiro</h2>
+            <div class="grade-jogos">
+                <div class="card-jogo">
+                    <div class="info-campeonato">Série A - Rodada 18</div>
+                    <div class="confronto">
+                        <span class="time-mandante">Cruzeiro</span>
+                        <span class="X">X</span>
+                        <span class="time-visitante">Fluminense</span>
+                    </div>
+                    <div class="detalhes-jogo">Domingo, 31/05 - 20:30h</div>
+                </div>
+                <div class="card-jogo">
+                    <div class="info-campeonato">Série A - Rodada 18</div>
+                    <div class="confronto">
+                        <span class="time-mandante">Vasco</span>
+                        <span class="X">X</span>
+                        <span class="time-visitante">Atlético-MG</span>
+                    </div>
+                    <div class="detalhes-jogo">Domingo, 31/05 - 16:00h</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="libertadores" class="agenda-container">
+            <h2>Conmebol Libertadores</h2>
+            <div class="grade-jogos">
+                <div class="card-jogo internacional">
+                    <div class="info-campeonato">Fase de Grupo</div>
+                    <div class="confronto">
+                        <span class="time-mandante">Cruzeiro</span>
+                        <span class="X">X</span>
+                        <span class="time-visitante">Barcelona SC</span>
+                    </div>
+                    <div class="detalhes-jogo">Quinta-Feira, 28/05 - 21:30h</div>
+                </div>
+                <div class="card-jogo sem-jogo">
+                    <p>América e Atletico Mineiro não possuem partidas agendadas nesta competição.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="sudamericana" class="agenda-container">
+            <h2>Conmebol Sudamericana</h2>
+            <div class="grade-jogos">
+                <div class="card-jogo internacional">
+                    <div class="info-campeonato">Fase de Grupo</div>
+                    <div class="confronto">
+                        <span class="time-mandante">Atletico Mineiro</span>
+                        <span class="X">X</span>
+                        <span class="time-visitante">Puerto Cabello</span>
+                    </div>
+                    <div class="detalhes-jogo">Quarta-feira, 27/05 - 19:00h</div>
+                </div>
+                <div class="card-jogo sem-jogo">
+                    <p>Cruzeiro e América não possuem partidas agendadas nesta competição.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function mudarCampeonato(idCampeonato) {
+            // Esconde todos os blocos de jogos
+            const blocos = document.querySelectorAll('.agenda-container');
+            blocos.forEach(bloco => bloco.classList.remove('ativa'));
+
+            // Remove a marcação verde do botão antigo
+            const botoes = document.querySelectorAll('.btn-camp');
+            botoes.forEach(botao => botao.classList.remove('ativo'));
+
+            // Mostra o bloco selecionado e pinta o botão de verde
+            document.getElementById(idCampeonato).classList.add('ativa');
+            event.currentTarget.classList.add('ativo');
+        }
+    </script>
+
+</body>
+</html>

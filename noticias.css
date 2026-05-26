@@ -1,0 +1,146 @@
+/* 
+   ESTILOS EXCLUSIVOS DA PÁGINA DE NOTÍCIAS (CARDS CLICÁVEIS)
+    */
+
+/* Container principal que centraliza o conteúdo e limita a largura máxima da página */
+.container-noticias {
+    max-width: 1200px;       /* Impede que os cards fiquem esticados demais em monitores ultra-wide */
+    margin: 40px auto;       /* Dá um espaço de 40px em cima/baixo e centraliza o bloco na tela */
+    padding: 0 30px;         /* Margem interna de segurança nas laterais para o texto não colar na tela */
+    font-family: Arial, sans-serif; /* Define a família de fontes padrão da página */
+}
+
+/* Estilização do título principal da página de notícias */
+.titulo-pagina-noticias {
+    text-align: center;      /* Centraliza o texto na tela */
+    color: #1a1a1a;          /* Define um tom de preto suave para o título */
+    font-size: 32px;         /* Tamanho grande para dar o destaque de cabeçalho principal */
+    margin-bottom: 5px;      /* Espaço pequeno abaixo para deixar o subtítulo logo em seguida */
+}
+
+/* Estilização do subtítulo informativo */
+.subtitulo-noticias {
+    text-align: center;      /* Centraliza o texto na tela */
+    color: #666;             /* Cor cinza intermediária para diferenciar do título principal */
+    margin-bottom: 40px;     /* Espaçamento generoso para afastar o texto do início do grid de notícias */
+    font-size: 15px;         /* Tamanho equilibrado para leitura de apoio */
+}
+
+/* ==========================================================================
+   ESTRUTURA DA GRADE DE NOTÍCIAS (SISTEMA DE GRID)
+   ========================================================================== */
+
+/* Grade de Notícias (CRITÉRIO OBRIGATÓRIO DO PROFESSOR: display: grid) */
+.grade-noticias {
+    display: grid;           /* Ativa o sistema de layout em grade (Grid) */
+    grid-template-columns: repeat(2, 1fr); /* Divide o espaço em 2 colunas de larguras exatamente iguais (1fr) */
+    gap: 25px;               /* Cria um espaçamento de 25px entre cada card (tanto nas linhas quanto colunas) */
+    margin-bottom: 60px;     /* Afasta o final do bloco de notícias do rodapé da página */
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO E COMPORTAMENTO DOS CARDS DE NOTÍCIAS
+   ========================================================================== */
+
+/* O Div Card Noticias estruturado */
+.card-noticias {
+    position: relative;      /* CRITÉRIO MÁGICO: Funciona como uma âncora para a película invisível se esticar aqui dentro */
+    background-color: #ffffff; /* Fundo branco para dar contraste com o fundo do site */
+    border: 1px solid #e0e0e0; /* Borda cinza bem fina para delimitar o contorno do cartão */
+    border-radius: 8px;      /* Arredonda os 4 cantos do card de notícias */
+    overflow: hidden;        /* Garante que a tag de categoria respeite o arredondamento do card e não saia para fora */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04); /* Cria uma sombra difusa e sutil na base do cartão */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Suaviza a animação do efeito de hover */
+    display: flex;           /* Flexbox: Permite organizar os blocos internos (tag, textos e data) */
+    flex-direction: column;  /* Alinha os blocos internos um embaixo do outro na vertical */
+    cursor: pointer;         /* OBRIGATÓRIO: Transforma a seta do mouse na mãozinha de clique em qualquer ponto do card */
+}
+
+/* Efeito de levante sutil ao passar o mouse por cima do cartão */
+.card-noticias:hover {
+    transform: translateY(-3px); /* Desloca o card 3 pixels para cima, simulando uma flutuação */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Deixa a sombra na base mais escura e espalhada */
+}
+
+/* Limpando a estilização padrão do link que inserimos dentro do título h3 */
+.link-noticia-titulo {
+    color: #111111;          /* Força o texto do link a ficar preto em vez do azul padrão de internet */
+    text-decoration: none;   /* OBRIGATÓRIO: Remove aquele sublinhado azul feio do link do navegador */
+}
+
+/* A MÁGICA: Cria um elemento invisível (película) que se espalha e cobre o card inteiro */
+.link-noticia-titulo::after {
+    content: "";             /* Propriedade obrigatória do pseudo-elemento para fazê-lo existir */
+    position: absolute;      /*困 Ativa o posicionamento absoluto baseado no '.card-noticias' (que tem relative) */
+    top: 0;                  /* Estica o link até o limite do topo do card */
+    right: 0;                /* Estica o link até o limite da direita do card */
+    bottom: 0;               /* Estica o link até o limite da base do card */
+    left: 0;                 /* Estica o link até o limite da esquerda do card */
+    z-index: 1;              /* Joga essa camada invisível por cima de tudo, tornando a área toda clicável */
+}
+
+/* Tags de identificação de categorias no topo do card */
+.categoria {
+    padding: 8px 15px;       /* Espaçamento interno para dar tamanho à barra da categoria */
+    font-size: 12px;         /* Letras pequenas para estilo de etiqueta */
+    font-weight: bold;       /* Deixa o nome em negrito */
+    text-transform: uppercase; /* Converte o texto automaticamente para letras maiúsculas */
+    color: white;            /* A cor do texto da tag sempre será branca para contrastar com os fundos */
+}
+
+/* Cores das tags personalizadas para o contexto dos clubes mineiros */
+.categoria.galo { background-color: #1a1a1a; }    /* Preto para o Atlético-MG */
+.categoria.raposa { background-color: #004997; }  /* Azul para o Cruzeiro */
+.categoria.coelho { background-color: #00824a; }  /* Verde para o América-MG */
+.categoria.debate { background-color: #e67e22; }  /* Laranja para discussões Gerais/Mesas redondas */
+
+/* ==========================================================================
+   CONTEÚDO INTERNO DO RETÂNGULO DA NOTÍCIA
+   ========================================================================== */
+
+/* Espaçamento dos textos dentro do card */
+.conteudo-card {
+    padding: 20px;           /* Afasta o texto das bordas internas do cartão branco */
+    display: flex;           /* Ativa o Flexbox interno para organizar os textos */
+    flex-direction: column;  /* Organiza os blocos na vertical (título -> parágrafo -> rodapé) */
+    flex-grow: 1;            /* Faz este bloco preencher todo o espaço restante do card verticalmente */
+}
+
+/* Estilo do título da notícia */
+.conteudo-card h3 {
+    margin-top: 0;           /* Zera a margem superior padrão do navegador para não desalinhá-lo */
+    margin-bottom: 12px;     /* Cria uma distância confortável em relação ao parágrafo de baixo */
+    font-size: 18px;         /* Tamanho ideal para títulos secundários */
+    color: #111;             /* Preto de alta legibilidade */
+    line-height: 1.4;        /* Ajusta o espaçamento entre as linhas do próprio título */
+}
+
+/* Estilo do resumo/parágrafo da notícia */
+.conteudo-card p {
+    font-size: 14px;         /* Tamanho padrão para blocos de leitura */
+    color: #555;             /* Cinza escuro para manter uma boa leitura sem pesar visualmente */
+    line-height: 1.6;        /* Espaçamento confortável entre as linhas da notícia */
+    margin-bottom: 20px;     /* Afasta o resumo da linha de autoria/data */
+    flex-grow: 1;            /* O TRUQUE: Faz o texto empurrar a data/autor sempre para o rodapé final do card */
+}
+
+/* Linha de autoria e data na base da notícia */
+.autor-data {
+    font-size: 11px;         /* Fonte pequena para dados informativos secundários */
+    color: #999;             /* Cinza claro para não competir com a notícia */
+    font-weight: bold;       /* Deixa as informações em negrito sutil */
+    border-top: 1px solid #f0f0f0; /* Cria uma linha divisória horizontal clarinha acima da data */
+    padding-top: 10px;       /* Afasta a data da linha que criamos acima */
+}
+
+/* ==========================================================================
+   CRITÉRIO OBRIGATÓRIO: RESPONSIVIDADE (MOBILE-FIRST / MEDIA QUERIES)
+   ========================================================================== */
+
+/* Regras aplicadas quando a tela do usuário for menor ou igual a 768px (tablets e celulares) */
+@media (max-width: 768px) {
+    .grade-noticias {
+        grid-template-columns: 1fr; /* Transforma as duas colunas do Grid em apenas 1 coluna expandida */
+        gap: 20px;                  /* Reduz ligeiramente o espaçamento entre os cards no celular */
+    }
+}

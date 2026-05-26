@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFM-(Comentaristas do Futebol Mineiro)</title>
+    <link rel="stylesheet" href="frentedosite.css">
+</head>
+<body>
+    <script>
+        window.alert('Olá colega');
+    </script>
+    <header>
+        <nav class="navegação-tela-inicial">
+        <a href="times.html" target="_blank" rel="noopener noreferrer">Times</a>
+        <a href="noticias.html" target="_blank" rel="noopener noreferrer">Notícias</a>
+        <a href="index.html">CFM</a>
+        <a href="estatisticas.html" target="_blank" rel="noopener noreferrer">Agente</a>
+        <a href="sobre.html" target="_blank" rel="noopener noreferrer">Sobre</a>
+        </nav>
+    </header>
+
+    <main>
+    <div class="texto-pagina-inicial">
+    <video src="Videos/Videos dos times.mp4" autoplay loop muted playsinline style="width: 100%; max-width: 1350px; height: auto; display: block; margin: 0 auto;"></video>
+        
+        <div class="grade-noticias">
+            
+            <div class="card-noticia grande" style="background-image: url('Imagens/Imagem\ Maycon.jpg');">
+                <div class="conteudo-noticia">
+                    <h2 class="titulo-noticia">Consolidado no Atlético-MG, Maycon reencontra Corinthians após acerto verbal frustrado</h2>
+                    
+                    <p class="subtitulo-noticia"></p>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="card-noticia pequena" style="background-image: url('Imagens/Cruzeiro\ e\ chape.jpg');">
+                <div class="conteudo-noticia">
+                    <h2 class="titulo-noticia-pequena">Cruzeiro encara Chape nas oitavas da Copa do Brasil; Veja detalhes</h2>
+                </div>
+            </div>
+
+            <div class="card-noticia pequena" style="background-image: url('Imagens/America.webp');">
+                <div class="conteudo-noticia">
+                    <h2 class="titulo-noticia-pequena">
+América-MG, Avaí e mais: veja os times com a pior seca de vitórias na Série B do Brasileiro</h2>
+                    <p class="subtitulo-noticia"></p>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+    </main>
+<section class="secao-contato">
+    <h2>Fale com o CFM</h2>
+    <p>Envie sua sugestão de debate ou resenha para os comentaristas!</p>
+        
+    <form class="formulario-contato">
+        <div class="grupo-campo">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+            </div>
+            
+            <div class="grupo-campo">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="seu-email@exemplo.com" required>
+            </div>
+            
+            <div class="grupo-campo">
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Deixe seu comentário..." required></textarea>
+            </div>
+            
+            <button type="submit" class="botao-enviar">Enviar Mensagem</button>
+        </form>
+    </section>
+
+    <footer class="rodape-site">
+        <p>&copy; 2026 CFM - Comentaristas do Futebol Mineiro. Trabalho Acadêmico.</p>
+    </footer>
+</body>
+</html>

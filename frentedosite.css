@@ -1,0 +1,269 @@
+/* ==========================================================================
+   ESTILOS GLOBAIS E ELEMENTOS ORIGINAIS AJUSTADOS
+   ========================================================================== */
+
+/* Estilização do cabeçalho de título principal do site */
+.titulo-principal {
+    /* Cria um fundo com listras verticais rígidas divididas proporcionalmente em Preto, Verde e Azul */
+    background: linear-gradient(to bottom, black 0%, black 33%, green 33%, green 66%, blue 66%, blue 100%);
+    color: white;            /* Deixa a cor das letras do título em branco */
+    padding: 20px;           /* Adiciona um preenchimento interno para dar altura ao bloco */
+    text-align: center;      /* Centraliza o texto do título principal na tela */
+}
+
+/* ==========================================================================
+   MENU DE NAVEGAÇÃO SUPERIOR GLOBAL
+   ========================================================================== */
+
+/* Configurações da barra de menu que fica no topo da tela */
+.navegação-tela-inicial {
+    display: flex;           /* Flexbox: Alinha os links do menu lado a lado horizontalmente */
+    align-items: center;     /* Alinha os links verticalmente pelo centro da barra */
+    justify-content: center; /* Centraliza o conjunto de links horizontalmente na tela */
+    font-family: Arial, Helvetica, sans-serif; /* Define as fontes padrões sem serifa do menu */
+    gap: 100px;              /* Espaçamento grande e fixo de 100px entre um link e outro */
+    padding: 15px;           /* Preenchimento interno para dar altura à barra de menu */
+    background-color: #1a1a1a; /* Fundo cinza escuro/preto para destacar o menu do resto do site */
+}
+
+/* Estilo padrão das tags de links de navegação dentro do menu */
+.navegação-tela-inicial a {
+    color: white;            /* Texto dos links em cor branca */
+    text-decoration: none;   /* Remove o sublinhado padrão que o navegador coloca em links */
+    font-weight: bold;       /* Deixa o texto dos botões do menu em negrito */
+}
+
+/* Efeito visual acionado quando o usuário passa o mouse por cima do link */
+.navegação-tela-inicial a:hover {
+    color: #e90b0b;          /* Altera a cor do texto para vermelho (Nota: o comentário original citava verde, mas a cor é vermelha) */
+}
+
+/* ==========================================================================
+   BLOCO DE CONTEÚDO INSTITUCIONAL (TEXTOS DA HOME / SOBRE)
+   ========================================================================== */
+
+/* Layout e alinhamento do bloco de texto principal da página inicial */
+.texto-pagina-inicial {
+    font-family: Arial, Helvetica, sans-serif; /* Define a família de fontes para leitura */
+    text-align: justify;     /* Distribui as linhas de texto preenchendo as margens esquerda e direita uniformemente */
+    max-width: 1350px;       /* Limita a largura do texto em telas muito grandes para não cansar a vista */
+    margin: 0 auto;          /* Zera as margens verticais e centraliza o bloco na horizontal */
+    padding: 20px;           /* Respiro interno para o texto não colar nas bordas do navegador */
+}
+
+/* Margem e espaçamento da seção institucional Sobre */
+.sobre-conteudo {
+    margin-top: 40px;        /* Afasta o bloco do elemento posicionado logo acima */
+    line-height: 1.6;        /* Melhora a legibilidade aumentando o espaçamento entre as linhas do texto */
+    color: #333;             /* Define um tom de cinza escuro para os parágrafos */
+}
+
+/* Destaque visual para o Slogan do portal */
+.slogan-section {
+    margin-top: 30px;        /* Espaço superior para afastar do texto anterior */
+    border-left: 4px solid rgb(215, 238, 11); /* Cria uma barra vertical grossa em tom verde-limão/amarelo à esquerda */
+    padding-left: 15px;      /* Empurra o texto para a direita, evitando que ele cole na barra decorativa */
+}
+
+/* ==========================================================================
+   CRITÉRIO OBRIGATÓRIO: SISTEMA DE GRADE DE NOTÍCIAS (ESTILO GE / PORTAIS)
+   ========================================================================== */
+
+/* Container geral da home que monta o mosaico de notícias usando CSS Grid */
+.grade-noticias {
+    display: grid;           /* Ativa as regras do CSS Grid */
+    grid-template-columns: 1.2fr 1fr; /* Divide em duas colunas, sendo a da esquerda (1.2fr) um pouco maior que a da direita (1fr) */
+    grid-template-rows: 250px 250px; /* Define duas linhas de altura fixa com 250px cada para as notícias menores */
+    gap: 15px;               /* Cria canaletas de espaçamento de 15px separando os blocos da grade */
+    margin: 30px auto;       /* Margem de 30px nas extremidades verticais e centraliza na horizontal */
+    width: 100%;             /* Garante que o grid ocupe toda a largura do seu container pai */
+}
+
+/* Configuração estrutural comum aplicada a todos os cards de notícia da home */
+.card-noticia {
+    background-size: cover;  /* Faz com que a imagem de fundo preencha todo o espaço do card sem distorcer */
+    background-position: center; /* Centraliza a imagem de fundo verticalmente e horizontalmente */
+    position: relative;      /* Permite posicionar elementos de forma absoluta dentro dele (como o degradê e textos) */
+    border-radius: 4px;      /* Suaviza as pontas do card com um arredondamento leve */
+    overflow: hidden;        /* Impede que o efeito de degradê ou imagens ultrapassem os cantos arredondados */
+    display: flex;           /* Ativa Flexbox interno no card */
+    align-items: flex-end;   /* Joga as caixas de texto fixas na base inferior do cartão */
+}
+
+/* Pseudo-elemento que injeta uma película escura em degradê sobre a foto de fundo */
+.card-noticia::before {
+    content: "";             /* Obrigatório para inicializar o pseudo-elemento */
+    position: absolute;      /* Desliga o elemento do fluxo e fixa ele cobrindo as bordas do card */
+    top: 0; left: 0;         /* Alinha no canto superior esquerdo */
+    width: 100%; height: 100%; /* Estica a película por toda a largura e altura do card */
+    /* Cria uma sombra preta densa na base (0.9) que vai clareando suavemente até o topo (0.2) para dar leitura ao texto branco */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 15%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 1;              /* Posiciona a película acima da imagem, mas abaixo dos textos reais */
+}
+
+/* Bloco que agrupa os textos (títulos e resumos) da notícia */
+.conteudo-noticia {
+    position: relative;      /* Torna o elemento independente do fluxo absoluto da película */
+    z-index: 2;              /* Força o texto a ficar na camada mais alta, em cima da sombra escura */
+    color: white;            /* Força todas as fontes internas a ficarem brancas */
+    padding: 20px;           /* Afasta o texto das extremidades do card de notícia */
+    width: 100%;             /* Garante que a caixa de texto utilize toda a largura disponível */
+}
+
+/* Regras específicas dedicadas apenas ao Card de Notícia Principal (GRANDE) */
+.card-noticia.grande {
+    grid-column: 1;          /* Determina que este card ocupará obrigatoriamente a primeira coluna da esquerda */
+    grid-row: 1 / span 2;    /* Alinha o card na linha 1 e faz ele se esticar cobrindo o espaço de duas linhas do grid */
+    height: 515px;           /* Define a altura exata para se igualar à soma das duas pequenas (250+250) + o gap (15) */
+}
+
+/* Configurações tipográficas do título da Notícia Grande */
+.titulo-noticia {
+    font-size: 26px;         /* Fonte grande de destaque do portal */
+    font-weight: 800;         /* Peso de fonte ultra-negrito (estilo manchete jornalística) */
+    text-transform: uppercase; /* Converte automaticamente todas as letras do título em maiúsculas */
+    margin: 0 0 10px 0;      /* Zera as margens laterais/superior e adiciona 10px de espaçamento inferior */
+    line-height: 1.2;        /* Aproxima as linhas do título para não espalhar o texto */
+}
+
+/* Configurações do subtítulo descritivo da Notícia Grande */
+.subtitulo-noticia {
+    font-size: 14px;         /* Tamanho padrão menor para texto de apoio */
+    color: #d1d1d1;          /* Tom cinza claro para diferenciar da cor branca do título principal */
+    margin: 0;               /* Zera todas as margens externas padrão */
+    line-height: 1.4;        /* Define uma altura de linha confortável para a leitura do resumo */
+}
+
+/* Regras específicas dedicadas aos Cards de Notícias Secundários (PEQUENAS) */
+.card-noticia.pequena {
+    grid-column: 2;          /* Obriga estes cartões a ficarem empilhados na segunda coluna (direita) */
+    height: 250px;           /* Altura fixa padrão para as chamadas menores */
+}
+
+/* Configurações do título das notícias secundárias */
+.titulo-noticia-pequena {
+    font-size: 20px;         /* Tamanho intermediário menor que o da manchete principal */
+    font-weight: 700;         /* Peso em negrito acentuado */
+    margin: 0 0 8px 0;       /* Margem inferior de 8px para afastar da listagem ou resumo abaixo */
+}
+
+/* Lista de marcadores/links internos de apoio em notícias pequenas */
+.lista-noticias-pequena {
+    margin: 0;               /* Zera os espaçamentos externos da lista */
+    padding-left: 15px;      /* Cria o recuo padrão para o alinhamento dos pontos marcadores */
+    font-size: 13px;         /* Fonte reduzida para blocos compactos de links */
+    color: #e0e0e0;          /* Cor cinza esbranquiçada */
+}
+
+/* Media Query: Aplica adaptações quando o dispositivo tem largura de tela de até 768px */
+@media (max-width: 768px) {
+    .grade-noticias {
+        grid-template-columns: 1fr; /* Desfaz as duas colunas do Grid, colando os cards em 1 coluna única vertical */
+        grid-template-rows: auto;   /* Permite que o tamanho das linhas seja definido pelo conteúdo automaticamente */
+    }
+    .card-noticia.grande {
+        height: 350px;       /* Encurta a altura do card principal para não sumir com a tela do celular */
+    }
+    .card-noticia.pequena {
+        grid-column: 1;      /* Força os cards da direita a irem para a coluna única centralizada */
+        height: 220px;       /* Ajusta a altura deles para ficarem mais proporcionais em telas mobile */
+    }
+    .navegação-tela-inicial {
+        gap: 20px;           /* Reduz drasticamente o espaçamento do menu para os links caberem no celular sem sumir */
+    }
+}
+
+/* ==========================================================================
+   SEÇÃO DE CONTATO (FORMULÁRIO DE FEEDBACK / COMPLEMENTO DO PROJETO)
+   ========================================================================== */
+
+/* Bloco centralizado que envelopa a área do formulário de contato */
+.secao-contato {
+    max-width: 550px;        /* Limita a largura para o formulário ficar estreito e elegante */
+    margin: 60px auto;       /* Margem grande de 60px para isolar das seções e centraliza na tela */
+    padding: 30px;           /* Espaço interno generoso para os inputs respirarem dentro da caixa */
+    background-color: #ffffff; /* Fundo totalmente branco */
+    border-radius: 8px;      /* Cantos suavizados do painel de contato */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra suave para dar efeito de relevo sobre o fundo */
+    font-family: Arial, sans-serif; /* Garante a padronização das fontes dos formulários */
+}
+
+/* Título interno da seção de Contato */
+.secao-contato h2 {
+    text-align: center;      /* Centraliza o título no topo do bloco */
+    color: #1a1a1a;          /* Cor preta sólida */
+    margin-top: 0;           /* Zera a margem superior nativa */
+    margin-bottom: 5px;      /* Aproxima o título do parágrafo explicativo logo abaixo */
+}
+
+/* Texto descritivo da seção de contato */
+.secao-contato p {
+    text-align: center;      /* Centraliza o texto explicativo */
+    color: #666;             /* Tom cinza fosco discreto */
+    margin-bottom: 20px;     /* Afasta o texto do primeiro campo do formulário */
+    font-size: 14px;         /* Tamanho confortável para instruções */
+}
+
+/* CRITÉRIO OBRIGATÓRIO: Organização do formulário em linha reta usando Flexbox */
+.formulario-contato {
+    display: flex;           /* Ativa o Flexbox no formulário */
+    flex-direction: column;  /* Força todos os campos a ficarem empilhados verticalmente um sob o outro */
+    gap: 15px;               /* Define a distância fixa de 15px isolando cada campo */
+}
+
+/* Pequeno bloco agrupando a Label correspondente e seu Input */
+.grupo-campo {
+    display: flex;           /* Ativa o Flexbox interno */
+    flex-direction: column;  /* Coloca a Label em cima do seu respectivo campo de preenchimento */
+    gap: 5px;                /* Distância sutil de 5px entre o texto e a caixinha */
+}
+
+/* Estilização dos textos das etiquetas (Labels) */
+.grupo-campo label {
+    font-weight: bold;       /* Deixa as indicações dos campos em negrito */
+    color: #333;             /* Cor cinza grafite escuro */
+    font-size: 14px;
+}
+
+/* Padronização visual de todas as caixas de texto (inputs de linha única e caixas de mensagem) */
+.grupo-campo input, 
+.grupo-campo textarea {
+    padding: 10px;           /* Espaçamento interno para os textos digitados não ficarem colados nas bordas */
+    border: 1px solid #ccc;  /* Linha fina cinza claro delimitando as áreas das caixas */
+    border-radius: 4px;      /* Arredonda levemente os cantos internos das caixas */
+    font-size: 14px;         /* Tamanho da fonte que o usuário enxerga enquanto digita */
+}
+
+/* Estilização do botão de envio do formulário */
+.botao-enviar {
+    background-color: #4caf50; /* Aplica a coloração verde padrão de validação */
+    color: white;            /* Texto interno do botão em cor branca */
+    border: none;            /* Remove as bordas padrão mecânicas de botões do navegador */
+    padding: 12px;           /* Preenchimento vertical e horizontal para dar clique ao botão */
+    font-size: 16px;         /* Fonte levemente expandida para maior visibilidade */
+    font-weight: bold;       /* Força o termo 'Enviar' a ficar em negrito */
+    border-radius: 4px;      /* Segue o padrão de cantos levemente arredondados dos inputs */
+    cursor: pointer;         /* Muda o ícone do mouse para o indicador de clique ('mãozinha') */
+    transition: background-color 0.2s; /* Adiciona suavidade na transição de cor do efeito hover */
+    margin-top: 5px;         /* Separa sutilmente o botão do campo de mensagens localizado acima */
+}
+
+/* Efeito visual de mudança de cor ao repousar o cursor sobre o botão enviar */
+.botao-enviar:hover {
+    background-color: #388e3c; /* Transiciona para um tom de verde escuro floresta */
+}
+
+/* ==========================================================================
+   RODAPÉ FINAL INFORMATIVO DO PORTAL (FOOTER)
+   ========================================================================== */
+
+/* Barra escura de encerramento posicionada no limite inferior da página */
+.rodape-site {
+    background-color: #1a1a1a; /* Mantém a mesma tonalidade cinza escura usada no menu superior */
+    color: #999;             /* Cor cinza claro/médio para os créditos e direitos autorais */
+    text-align: center;      /* Centraliza os textos institucionais e nomes dos alunos */
+    padding: 20px;           /* Preenchimento para dar espessura à faixa de rodapé */
+    font-size: 13px;         /* Letras pequenas ideais para encerramentos de páginas */
+    font-family: Arial, sans-serif; /* Define a fonte padrão limpa do rodapé */
+    margin-top: 60px;        /* Garante que o rodapé fique bem afastado e isolado dos blocos superiores */
+}

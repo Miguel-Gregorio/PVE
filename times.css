@@ -1,0 +1,149 @@
+/* ==========================================================================
+   MENU DE NAVEGAÇÃO SUPERIOR GLOBAL (REPETIDO PARA MANTER O PADRÃO)
+   ========================================================================== */
+
+/* Configurações da barra de menu que fica no topo da tela */
+.navegação-tela-inicial {
+    display: flex;           /* Flexbox: Alinha os links do menu lado a lado horizontalmente */
+    align-items: center;     /* Alinha os links verticalmente pelo centro da barra */
+    justify-content: center; /* Centraliza o conjunto de links horizontalmente na tela */
+    font-family: Arial, Helvetica, sans-serif; /* Define as fontes padrões do menu */
+    gap: 100px;              /* Espaçamento grande e fixo de 100px entre um link e outro */
+    padding: 15px;           /* Preenchimento interno para dar altura à barra de menu */
+    background-color: #1a1a1a; /* Fundo cinza escuro/preto para destacar o menu */
+}
+
+/* Estilo padrão das tags de links de navegação dentro do menu */
+.navegação-tela-inicial a {
+    color: white;            /* Texto dos links em cor branca */
+    text-decoration: none;   /* Remove o sublinhado padrão dos links */
+    font-weight: bold;       /* Deixa o texto em negrito */
+}
+
+/* Efeito visual quando o usuário passa o mouse por cima do link do menu */
+.navegação-tela-inicial a:hover {
+    color: #e90b0b;          /* Altera a cor do texto para vermelho */
+}
+
+/* ==========================================================================
+   ESTRUTURA E LAYOUT DA PÁGINA DE TIMES
+   ========================================================================== */
+
+/* Container principal que limita a largura máxima e centraliza os blocos na tela */
+.container-times-pagina {
+    max-width: 1350px;       /* Evita que a grade de times se espalhe demais em telas muito grandes */
+    margin: 0 auto;          /* Zera as margens verticais e centraliza o bloco na horizontal */
+    padding: 0 40px;         /* Espaço de segurança nas laterais para os cards não colarem nas bordas */
+    box-sizing: border-box;  /* Garante que o padding lateral não aumente o tamanho total do container */
+}
+
+/* Estilização e alinhamento do título principal da página de clubes */
+.titulo-pagina-times {
+    text-align: center;      /* Centraliza o título na tela */
+    color: #1a1a1a;          /* Tom de preto suave */
+    font-size: 32px;         /* Tamanho de destaque para o cabeçalho principal */
+    margin-top: 40px;        /* Afasta o título do menu superior */
+    margin-bottom: 40px;     /* Afasta o título da grade de cards abaixo */
+    font-family: Arial, Helvetica, sans-serif; /* Define a família de fontes do título */
+}
+
+/* CRITÉRIO OBRIGATÓRIO DO PROFESSOR: Grade configurada para 4 clubes por fileira */
+.grade-clubes {
+    display: grid;           /* Ativa o sistema de layout em grade (CSS Grid) */
+    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas de tamanhos exatamente iguais (1fr) dividindo a linha */
+    gap: 20px;               /* Espaçamento de 20px isolando cada card de time (linhas e colunas) */
+    margin-bottom: 50px;     /* Afasta o final da grade do rodapé da página */
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO DOS CARDS INDIVIDUAIS DOS CLUBES
+   ========================================================================== */
+
+/* Caixa retangular com tamanho padrão que abriga a foto e o escudo do clube */
+.card-clube {
+    position: relative;      /* OBRIGATÓRIO: Funciona como âncora para posicionar a legenda de texto no centro */
+    display: block;          /* Transforma o elemento em um bloco sólido estruturado */
+    height: 180px;           /* Altura fixa padrão para todos os cards de times ficarem simétricos */
+    border-radius: 12px;     /* Arredondamento acentuado e moderno nos 4 cantos do card */
+    overflow: hidden;        /* Garante que as imagens internas respeitem as bordas arredondadas e não vazem */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve na base para dar profundidade */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza as transições de movimento e sombra */
+    cursor: pointer;         /* Muda o cursor do mouse para a mãozinha indicadora de clique */
+}
+
+/* Ajuste da imagem (escudo/estádio) para caber perfeitamente no tamanho padrão */
+.card-clube img {
+    width: 100%;             /* Força a imagem a ocupar toda a largura disponível do card */
+    height: 100%;            /* Força a imagem a ocupar toda a altura disponível do card */
+    object-fit: cover;       /* Corta e adapta a imagem proporcionalmente para preencher o espaço sem distorcer ou esticar */
+    display: block;          /* Remove espaçamentos fantasmas na base da imagem */
+    transition: filter 0.3s ease; /* Suaviza o efeito de escurecimento da imagem no hover */
+}
+
+/* ==========================================================================
+   EFEITOS INTERATIVOS (HOVER / PASSAR O MOUSE)
+   ========================================================================== */
+
+/* Efeito de levante do card inteiro ao passar o mouse */
+.card-clube:hover {
+    transform: translateY(-5px); /* Desloca o card inteiro 5px para cima, simulando flutuação */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Deixa a sombra projetada mais escura e espalhada */
+}
+
+/* Escurece a imagem de fundo quando o mouse passa por cima */
+.card-clube:hover img {
+    filter: brightness(0.25); /* Reduz o brilho para 25%, deixando o fundo quase preto para destacar o texto branco */
+}
+
+/* CONSERTANDO A LEGENDA DO NOME DO TIME (Pseudo-elemento de Centralização Perfeita) */
+.card-clube::after {
+    content: attr(data-nome); /* TRUQUE: Captura dinamicamente o texto digitado no atributo 'data-nome' do HTML */
+    position: absolute;      /* Desliga o texto do fluxo e permite posicioná-lo cirurgicamente na tela */
+    top: 50%;                /* Move a base do texto para a metade vertical do card */
+    left: 50%;               /* Move o início do texto para a metade horizontal do card */
+    transform: translate(-50%, -30%); /* Deslocamento inicial: centralizado nos lados, mas um pouco abaixo do meio */
+    color: white;            /* Cor do nome do time sempre branca */
+    font-size: 20px;         /* Tamanho de destaque para o nome do clube */
+    font-weight: bold;       /* Aplica negrito ao nome do time */
+    text-align: center;      /* Centraliza as linhas de texto caso o nome quebre em duas linhas */
+    width: 90%;              /* Limita a largura do texto a 90% para não colar nas bordas do card */
+    opacity: 0;              /* Inicia totalmente invisível/escondido */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Cria uma transição suave de surgimento e subida */
+    z-index: 2;              /* Força o texto a ficar na camada mais alta, acima da imagem escurecida */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Cria uma sombra preta atrás da letra para garantir a leitura */
+    font-family: Arial, Helvetica, sans-serif; /* Aplica a fonte padrão sem serifa */
+}
+
+/* Ativa e move a legenda para o centro exato quando o usuário passa o mouse */
+.card-clube:hover::after {
+    opacity: 1;              /* Torna o nome do time totalmente visível */
+    transform: translate(-50%, -50%); /* Alinha perfeitamente no centro matemático (horizontal e vertical) fazendo o texto "subir" sutilmente */
+}
+
+/* ==========================================================================
+   CRITÉRIO OBRIGATÓRIO: RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Ajuste para telas de Tablets ou Monitores Pequenos (Até 1024px) */
+@media (max-width: 1024px) {
+    .grade-clubes { 
+        grid-template-columns: repeat(3, 1fr); /* Reduz de 4 para 3 colunas por fileira */
+    }
+}
+
+/* Ajuste para telas de Celulares deitados ou Tablets em pé (Até 768px) */
+@media (max-width: 768px) {
+    .grade-clubes { 
+        grid-template-columns: repeat(2, 1fr); /* Reduz para 2 colunas por fileira */
+    }
+    .card-clube { 
+        height: 150px;       /* Reduz ligeiramente a altura do card para não ocupar a tela toda */
+    }
+}
+
+/* Ajuste para telas de Celulares em pé normais (Até 480px) */
+@media (max-width: 480px) {
+    .grade-clubes { 
+        grid-template-columns: 1fr; /* Transforma a grade em apenas 1 coluna inteira vertical */
+    }
+}
